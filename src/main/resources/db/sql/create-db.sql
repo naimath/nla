@@ -12,3 +12,8 @@ CREATE TABLE book (
   author     VARCHAR(30),
   isbn       VARCHAR(50)
 );
+CREATE TABLE lend (
+  id         INTEGER PRIMARY KEY,
+  person_id  INTEGER,
+  book_id    INTEGER
+);

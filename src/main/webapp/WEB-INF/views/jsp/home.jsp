@@ -10,7 +10,7 @@
 <h1 align="center">National Library Of Australia</h1>
 <h2>People List</h2>
 <div class="container">
-  <table class="table table-bordered table-hove">
+  <table class="table table-bordered table-hover">
     <thead>
       <tr>
         <th>Name</th>
@@ -30,7 +30,27 @@
   </table>
 </div>
 
-
+<h2>Book List</h2>
+<div class="container">
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>ISBN</th>
+      </tr>
+    </thead>
+    <tbody>
+      <c:forEach items="${books}" var="book"> 
+ 		 <tr>
+    		<td>${book.title}</td>
+    		<td>${book.author}</td>
+    		<td>${book.isbn}</td>
+    	  </tr>
+	  </c:forEach>
+    </tbody>
+  </table>
+</div>
 <script type="text/javascript" src="webjars/jquery/2.1.1/jquery.min.js"></script>
 <script type="text/javascript" src="webjars/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </body>
