@@ -7,7 +7,7 @@ NLA library application
 
 ###2. To Run this project locally
 ```shell
-$ git clone https://github.com/mkyong/spring-embedded-database
+$ git clone https://github.com/naimath/nla.git
 $ mvn jetty:run
 ```
 Access ```http://localhost:8080/nla/```
