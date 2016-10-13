@@ -10,32 +10,23 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.nla.dao.UserDao;
-import com.nla.model.Person;
+import com.nla.web.repository.entity.Person;
+import com.nla.web.service.PersonService;
 
 @Controller
-public class WelcomeController {
-
-	private static final Logger logger = LoggerFactory.getLogger(WelcomeController.class);
-
+public class HomeController {
+	
 	@Autowired
-	UserDao userDao;
+	PersonService personService;
+
+	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String welcome(Model model) {
-
-		logger.debug("nla");
-
-		//User user = userDao.findByName("mkyong");
-
-		List<Person> users = userDao.findAll();
-
-		System.out.println(users);
-
-		model.addAttribute("user", users);
-
-		return "welcome";
-
+		List<Person> persons = personService.getPersons();
+		logger.info(persons.toString());
+		model.addAttribute("persons", persons);
+		return "home";
 	}
 
 }
