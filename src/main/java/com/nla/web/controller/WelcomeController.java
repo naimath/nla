@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.nla.dao.UserDao;
-import com.nla.model.User;
+import com.nla.model.Person;
 
 @Controller
 public class WelcomeController {
@@ -28,7 +28,7 @@ public class WelcomeController {
 
 		//User user = userDao.findByName("mkyong");
 
-		List<User> users = userDao.findAll();
+		List<Person> users = userDao.findAll();
 
 		System.out.println(users);
 

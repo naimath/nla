@@ -2,12 +2,12 @@ package com.nla.dao;
 
 import java.util.List;
 
-import com.nla.model.User;
+import com.nla.model.Person;
 
 public interface UserDao {
 
-	User findByName(String name);
+	Person findByName(String name);
 
-	List<User> findAll();
+	List<Person> findAll();
 
 }

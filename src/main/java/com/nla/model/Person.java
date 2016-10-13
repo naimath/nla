@@ -1,9 +1,10 @@
 package com.nla.model;
 
-public class User {
+public class Person {
 
 	Integer id;
 	String name;
+	Integer phone;
 	String email;
 
 	public Integer getId() {
@@ -28,6 +29,14 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+  public Integer getPhone(){
+		return phone;
+	}
+
+	public void setPhone(Integer phone){
+		this.phone = phone;
 	}
 
 	@Override

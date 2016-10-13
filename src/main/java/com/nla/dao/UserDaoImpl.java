@@ -11,7 +11,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.nla.model.User;
+import com.nla.model.Person;
 
 @Repository
 public class UserDaoImpl implements UserDao {
@@ -24,17 +24,17 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public User findByName(String name) {
+	public Person findByName(String name) {
 
 		Map<String, Object> params = new HashMap<String, Object>();
         params.put("name", name);
 
 		String sql = "SELECT * FROM users WHERE name=:name";
 
-        User result = namedParameterJdbcTemplate.queryForObject(
+        Person result = namedParameterJdbcTemplate.queryForObject(
                     sql,
                     params,
-                    new UserMapper());
+                    new PersonMapper());
 
         //new BeanPropertyRowMapper(Customer.class));
 
@@ -43,26 +43,27 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public List<User> findAll() {
+	public List<Person> findAll() {
 
 		Map<String, Object> params = new HashMap<String, Object>();
 
-		String sql = "SELECT * FROM users";
+		String sql = "SELECT * FROM person";
 
-        List<User> result = namedParameterJdbcTemplate.query(sql, params, new UserMapper());
+        List<Person> result = namedParameterJdbcTemplate.query(sql, params, new PersonMapper());
 
         return result;
 
 	}
 
-	private static final class UserMapper implements RowMapper<User> {
+	private static final class PersonMapper implements RowMapper<Person> {
 
-		public User mapRow(ResultSet rs, int rowNum) throws SQLException {
-			User user = new User();
-			user.setId(rs.getInt("id"));
-			user.setName(rs.getString("name"));
-			user.setEmail(rs.getString("email"));
-			return user;
+		public Person mapRow(ResultSet rs, int rowNum) throws SQLException {
+			Person person = new Person();
+			person.setId(rs.getInt("id"));
+			person.setName(rs.getString("name"));
+			person.setPhone(rs.getInt("phone"));
+			person.setEmail(rs.getString("email"));
+			return person;
 		}
 	}
 
