@@ -5,6 +5,20 @@
 <head>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <link rel='stylesheet' href='webjars/bootstrap/3.2.0/css/bootstrap.min.css'>
+    <script>
+    function getBooks(id){
+      var showData = $('#bookDetails'+id);
+      showData.empty();
+
+      $.getJSON('getbooks/'+id, '', function(data){
+        showData.append(" Book Titiles: ")
+        $.each(data, function(index, element) {
+            showData.append(element.title+" ");
+         });
+      });
+    }
+
+    </script>
 </head>
 <body>
 <h1 align="center">National Library Of Australia</h1>
@@ -16,14 +30,16 @@
         <th>Name</th>
         <th>Phone</th>
         <th>Email</th>
+        <th>Lend Books</th>
       </tr>
     </thead>
     <tbody>
-      <c:forEach items="${persons}" var="person"> 
+      <c:forEach items="${persons}" var="person">
  		 <tr>
     		<td>${person.name}</td>
     		<td>${person.phone}</td>
     		<td>${person.email}</td>
+        <td><input type="button" value="GetBooks" onclick="getBooks(${person.id})"><span id="bookDetails${person.id}"></span></td>
     	  </tr>
 	  </c:forEach>
     </tbody>
@@ -41,7 +57,7 @@
       </tr>
     </thead>
     <tbody>
-      <c:forEach items="${books}" var="book"> 
+      <c:forEach items="${books}" var="book">
  		 <tr>
     		<td>${book.title}</td>
     		<td>${book.author}</td>

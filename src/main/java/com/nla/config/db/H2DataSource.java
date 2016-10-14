@@ -17,10 +17,12 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.context.annotation.ComponentScan;
 
 @Configuration
 @EnableJpaRepositories(basePackages={"com.nla.web.repository"})
 @EnableTransactionManagement
+@ComponentScan({ "com.nla.web" })
 public class H2DataSource {
 	private EmbeddedDatabase ed;
 
@@ -50,13 +52,6 @@ public class H2DataSource {
 		HibernateJpaVendorAdapter va = new HibernateJpaVendorAdapter();
 		lcemfb.setJpaVendorAdapter(va);
 
-		/*
-		 * Properties ps = new Properties(); ps.put("hibernate.dialect",
-		 * "org.hibernate.dialect.HSQLDialect");
-		 * ps.put("hibernate.hbm2ddl.auto", "create");
-		 * lcemfb.setJpaProperties(ps);
-		 */
-
 		lcemfb.afterPropertiesSet();
 
 		return lcemfb;
@@ -67,6 +62,7 @@ public class H2DataSource {
 	public PlatformTransactionManager transactionManager() {
 		JpaTransactionManager tm = new JpaTransactionManager();
 		tm.setEntityManagerFactory(this.entityManagerFactory().getObject());
+		tm.setDataSource(this.dataSource());
 		return tm;
 	}
 

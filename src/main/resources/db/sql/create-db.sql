@@ -10,10 +10,8 @@ CREATE TABLE book (
   id         INTEGER PRIMARY KEY,
   title      VARCHAR(30),
   author     VARCHAR(30),
-  isbn       VARCHAR(50)
-);
-CREATE TABLE lend (
-  id         INTEGER PRIMARY KEY,
+  isbn       VARCHAR(50),
   person_id  INTEGER,
-  book_id    INTEGER
+  FOREIGN KEY (person_id)
+   REFERENCES person(id)
 );
