@@ -19,6 +19,10 @@ import java.util.List;
 @Controller
 public class HomeController {
 
+	public static final String HOME_PAGE = "home";
+	public static final String PERSONS = "persons";
+	public static final String BOOKS = "books";
+
 	@Autowired
 	PersonService personService;
 
@@ -29,9 +33,10 @@ public class HomeController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String welcome(Model model) {
-		model.addAttribute("persons", personService.getPersons());
-		model.addAttribute("books",bookService.getBooks());
-		return "home";
+
+		model.addAttribute(PERSONS, personService.getPersons());
+		model.addAttribute(BOOKS,bookService.getBooks());
+		return HOME_PAGE;
 	}
 
 	@RequestMapping(value = "/getbooks/{personId}", method = RequestMethod.GET)
